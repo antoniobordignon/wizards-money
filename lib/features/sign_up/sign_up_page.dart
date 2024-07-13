@@ -14,7 +14,7 @@ import 'package:wizards_money/common/widgets/password_form_field.dart';
 import 'package:wizards_money/common/widgets/primary_button.dart';
 import 'package:wizards_money/features/sign_up/sign_up_controller.dart';
 import 'package:wizards_money/features/sign_up/sign_up_state.dart';
-import 'package:wizards_money/services/mock_auth_service.dart';
+import 'package:wizards_money/locator.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -28,7 +28,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _controller = SignUpController(MockAuthService());
+  final _controller = locator.get<SignUpController>();
 
   @override
   void dispose() {

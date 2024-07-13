@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:wizards_money/common/constants/app_collors.dart';
 import 'package:wizards_money/common/constants/app_text_styles.dart';
 import 'package:wizards_money/common/constants/routes.dart';
-import 'package:wizards_money/common/utils/uppercase_text_formatter.dart';
 import 'package:wizards_money/common/utils/validator.dart';
 import 'package:wizards_money/common/widgets/custom_bottom_sheet.dart';
 import 'package:wizards_money/common/widgets/custom_circular_progress_indicator.dart';
@@ -14,6 +13,7 @@ import 'package:wizards_money/common/widgets/password_form_field.dart';
 import 'package:wizards_money/common/widgets/primary_button.dart';
 import 'package:wizards_money/features/sign_in/sign_in_controller.dart';
 import 'package:wizards_money/features/sign_in/sign_in_state.dart';
+import 'package:wizards_money/locator.dart';
 import 'package:wizards_money/services/mock_auth_service.dart';
 
 class SignInPage extends StatefulWidget {
@@ -27,7 +27,7 @@ class _SignInPageState extends State<SignInPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _controller = SignInController(MockAuthService());
+  final _controller = locator.get<SignInController>();
 
   @override
   void dispose() {
