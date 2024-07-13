@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:wizards_money/common/constants/app_collors.dart';
 import 'package:wizards_money/common/constants/app_text_styles.dart';
+import 'package:wizards_money/common/constants/routes.dart';
 import 'package:wizards_money/common/widgets/custom_circular_progress_indicator.dart';
-import 'package:wizards_money/features/onboarding/onboarding_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -28,11 +28,9 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   void navigateToOnboarding() {
-    Navigator.pushReplacement(
+    Navigator.pushReplacementNamed(
       context, 
-      MaterialPageRoute(
-        builder: (context) => const OnboardingPage()
-      )
+      NamedRoute.initial
     );
   }
 

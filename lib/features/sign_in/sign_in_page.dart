@@ -12,27 +12,25 @@ import 'package:wizards_money/common/widgets/custom_text_field.dart';
 import 'package:wizards_money/common/widgets/mult_text_buttom.dart';
 import 'package:wizards_money/common/widgets/password_form_field.dart';
 import 'package:wizards_money/common/widgets/primary_button.dart';
-import 'package:wizards_money/features/sign_up/sign_up_controller.dart';
-import 'package:wizards_money/features/sign_up/sign_up_state.dart';
+import 'package:wizards_money/features/sign_in/sign_in_controller.dart';
+import 'package:wizards_money/features/sign_in/sign_in_state.dart';
 import 'package:wizards_money/services/mock_auth_service.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignInPageState extends State<SignInPage> {
   final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _controller = SignUpController(MockAuthService());
+  final _controller = SignInController(MockAuthService());
 
   @override
   void dispose() {
-    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _controller.dispose();
@@ -43,13 +41,13 @@ class _SignUpPageState extends State<SignUpPage> {
   void initState() {
     super.initState();
     _controller.addListener(() {
-      if (_controller.state is SignUpLoadingState) {
+      if (_controller.state is SignInLoadingState) {
         showDialog(
           context: context,
           builder: (context) => const CustomCircularProgressIndicator(),
         );
       }
-      if (_controller.state is SignUpSuccessState) {
+      if (_controller.state is SignInSuccessState) {
         Navigator.pop(context);
         Navigator.push(
           context,
@@ -62,8 +60,8 @@ class _SignUpPageState extends State<SignUpPage> {
           )
         );
       }
-      if (_controller.state is SignUpErrorState) {
-        final error = (_controller.state as SignUpErrorState);
+      if (_controller.state is SignInErrorState) {
+        final error = (_controller.state as SignInErrorState);
         Navigator.pop(context);
         customModalBottomSheet(
           context: context,
@@ -79,32 +77,18 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
         body: ListView(
       children: [
-        Text('Start Saving',
-            textAlign: TextAlign.center,
-            style: AppTextStyles.mediumText.copyWith(
-              color: AppColors.greenTwo,
-            )),
-        Text('Your Money!',
+        Text('Welcome Back!',
             textAlign: TextAlign.center,
             style: AppTextStyles.mediumText.copyWith(
               color: AppColors.greenTwo,
             )),
         Image.asset(
-          'assets/images/notesIcon.png',
+          'assets/images/person.png',
         ),
         Form(
           key: _formKey,
           child: Column(
             children: [
-              CustomTextFormField(
-                controller: _nameController,
-                labelText: "your name",
-                hintText: "JANE DOE",
-                inputFormatters: [
-                  UpperCaseTextInputFormatter(),
-                ],
-                validator: Validator.validateName,
-              ),
               CustomTextFormField(
                 controller: _emailController,
                 labelText: "your email",
@@ -113,19 +97,11 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               PasswordFormField(
                 controller: _passwordController,
-                labelText: "choose your password",
+                labelText: "your password",
                 hintText: "••••••••",
                 validator: Validator.validatePassword,
                 helperText:
                     "Must have at least 8 characters, 1 capital letter and 1 number.",
-              ),
-              PasswordFormField(
-                labelText: "confirm your password",
-                hintText: "••••••••",
-                validator: (value) => Validator.validateConfirmPassword(
-                  value,
-                  _passwordController.text,
-                ),
               ),
             ],
           ),
@@ -134,13 +110,12 @@ class _SignUpPageState extends State<SignUpPage> {
           padding: const EdgeInsets.only(
               left: 32.0, right: 32.0, top: 16.0, bottom: 4.0),
           child: PrimaryButton(
-              text: 'Sign Up',
+              text: 'Sign In',
               onPressed: () {
                 final valid = _formKey.currentState != null &&
                     _formKey.currentState!.validate();
                 if (valid) {
-                  _controller.signUp(
-                    name: _nameController.text,
+                  _controller.signIn(
                     email: _emailController.text, 
                     password: _passwordController.text,
                   );
@@ -152,17 +127,17 @@ class _SignUpPageState extends State<SignUpPage> {
         MultiTextButton(
           onPressed: () => Navigator.popAndPushNamed(
             context, 
-            NamedRoute.signIn
-            ),
+            NamedRoute.signUp,
+          ),
           children: [
             Text(
-              'Already have acount? ',
+              "Don't have acount? ",
               style: AppTextStyles.smallText.copyWith(
                 color: AppColors.grey,
               ),
             ),
             Text(
-              'Sign In',
+              'Sign Up',
               style: AppTextStyles.smallText.copyWith(
                 color: AppColors.greenTwo,
               ),

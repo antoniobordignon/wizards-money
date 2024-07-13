@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:wizards_money/features/sign_up/sign_up_state.dart';
 import 'package:wizards_money/services/auth_service.dart';
