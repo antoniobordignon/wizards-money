@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:wizards_money/common/constants/app_collors.dart';
 import 'package:wizards_money/common/constants/app_text_styles.dart';

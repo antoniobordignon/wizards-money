@@ -14,7 +14,6 @@ import 'package:wizards_money/common/widgets/primary_button.dart';
 import 'package:wizards_money/features/sign_in/sign_in_controller.dart';
 import 'package:wizards_money/features/sign_in/sign_in_state.dart';
 import 'package:wizards_money/locator.dart';
-import 'package:wizards_money/services/mock_auth_service.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
