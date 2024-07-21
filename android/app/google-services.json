@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "945106316253",
+    "project_id": "wizards-money",
+    "storage_bucket": "wizards-money.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945106316253:android:8c98d0636470e20a086434",
+        "android_client_info": {
+          "package_name": "com.wizardsmoney.wizards_money"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh83xsaBPa0n5IpGhCSuXyzmfx0YvcPQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
