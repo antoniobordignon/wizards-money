@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:wizards_money/common/constants/app_collors.dart';
 import 'package:wizards_money/common/constants/app_text_styles.dart';
 import 'package:wizards_money/common/constants/routes.dart';
+import 'package:wizards_money/common/extensions/sizes.dart';
 import 'package:wizards_money/common/widgets/custom_circular_progress_indicator.dart';
 import 'package:wizards_money/features/splash/splash_controller.dart';
 import 'package:wizards_money/features/splash/splash_state.dart';
@@ -23,6 +24,8 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState(){
     super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => Sizes.init(context));
     
     _splashController.isUserLogged();
     _splashController.addListener(() {
